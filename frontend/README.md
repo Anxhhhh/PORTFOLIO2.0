@@ -21,3 +21,4 @@ For a step-by-step implementation plan using **React Three Fiber + Drei + GSAP**
 
 - [`PROFESSIONAL_3D_GUIDE.md`](./PROFESSIONAL_3D_GUIDE.md)
 - [`ANTIGRAVITY_GLASS_LAYER_GUIDE.md`](./ANTIGRAVITY_GLASS_LAYER_GUIDE.md) for cursor-driven 3D glass overlay (background unchanged).
+- [`ANTIGRAVITY_MY_WORKS_SECTION_GUIDE.md`](./ANTIGRAVITY_MY_WORKS_SECTION_GUIDE.md) for adding a premium “My Works” section (Hackathons, Projects, Achievements).
