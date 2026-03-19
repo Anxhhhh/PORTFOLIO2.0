@@ -1,0 +1,15 @@
+
+> frontend@0.0.0 build
+> vite build
+
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 104 modules transformed.
+[31m✗[39m Build failed in 291ms
+[31merror during build:
+[31mCould not resolve "../hooks/use-mouse-position" from "src/components/Hero.jsx"[31m
+file: [36mD:/Coding/Reacts/finalPortFolio/frontend/src/components/Hero.jsx[31m
+    at getRollupError (file:///D:/Coding/Reacts/finalPortFolio/frontend/node_modules/rollup/dist/es/shared/parseAst.js:402:41)
+    at error (file:///D:/Coding/Reacts/finalPortFolio/frontend/node_modules/rollup/dist/es/shared/parseAst.js:398:42)
+    at ModuleLoader.handleInvalidResolvedId (file:///D:/Coding/Reacts/finalPortFolio/frontend/node_modules/rollup/dist/es/shared/node-entry.js:21710:24)
+    at file:///D:/Coding/Reacts/finalPortFolio/frontend/node_modules/rollup/dist/es/shared/node-entry.js:21670:26[39m

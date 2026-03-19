@@ -1,1 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400..700&family=Inter:wght@300;400;700&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-headline: "Anton", sans-serif;
+  --font-script: "Caveat", cursive;
+  --font-body: "Inter", sans-serif;
+}
+
+/* Typography Utilities */
+.font-headline { font-family: var(--font-headline); }
+.font-script { font-family: var(--font-script); }
+.font-body { font-family: var(--font-body); }
+
+/* Grain Texture */
+.bg-grain {
+  position: relative;
+}
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+/* Hide default cursor globally */
+* {
+  cursor: none !important;
+}
+
+@font-face {
+  font-family: 'TouraynDemo';
+  src: url('./fonts/TouraynDemo-Regular-BF69a5a801b0086.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Javacom';
+  src: url('./fonts/Javacom.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Custom Scrollbar for Smooth Takeover */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Horizontal Projects Rail Scrollbar */
+.projects-rail::-webkit-scrollbar {
+  height: 4px;
+}
+
+.projects-rail::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.projects-rail::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.projects-rail::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 68, 68, 0.5);
+}
+
+.projects-rail::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Smooth scroll momentum for horizontal rail */
+.projects-rail {
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+/* Prevent text selection during drag */
+.projects-rail.dragging * {
+  user-select: none !important;
+}
+
+/* Hide scrollbar on touch devices, show on hover for desktop */
+@media (hover: hover) {
+  .projects-rail::-webkit-scrollbar {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .projects-rail:hover::-webkit-scrollbar {
+    opacity: 1;
+  }
+}
