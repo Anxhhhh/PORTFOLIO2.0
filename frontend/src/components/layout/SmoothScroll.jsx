@@ -21,6 +21,7 @@ const SmoothScroll = ({ children }) => {
     });
 
     lenisRef.current = lenis;
+    window.lenis = lenis; // Expose to window for global access (e.g., from Navbar)
 
     // Use requestAnimationFrame to update Lenis
     function raf(time) {
@@ -40,6 +41,7 @@ const SmoothScroll = ({ children }) => {
 
     return () => {
       lenis.destroy();
+      window.lenis = null;
     };
   }, []);
 

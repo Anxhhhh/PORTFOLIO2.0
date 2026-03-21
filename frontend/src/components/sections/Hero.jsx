@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
+import NextSectionButton from "../ui/NextSectionButton";
 
 // ============================================================
 // Hero Component — Premium Animated Version
@@ -621,19 +622,9 @@ export default function Hero({ visible }) {
           {/* Main CTA Button */}
           <button
             onClick={() => {
-              const container = document.getElementById("skills-transition-container");
-              if (container) {
-                // Calculate the optimal scroll position to show the Skills section
-                // The transition container height is 220vh, so we scroll down about 55-60% of its travel distance
-                const rect = container.getBoundingClientRect();
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                // Target around 0.45 to ensure the About Me section is well-framed
-                const targetY = scrollTop + rect.top + (container.offsetHeight - window.innerHeight) * 0.45;
-                
-                window.scrollTo({
-                  top: targetY,
-                  behavior: "smooth"
-                });
+              const aboutSection = document.getElementById("about");
+              if (aboutSection) {
+                aboutSection.scrollIntoView({ behavior: "smooth" });
               }
             }}
             onMouseMove={(e) => {

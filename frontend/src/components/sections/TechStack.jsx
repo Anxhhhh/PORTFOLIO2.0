@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useMotionValue, useTransform, useMotionTemplate, useScroll, useSpring } from "framer-motion";
+import NextSectionButton from "../ui/NextSectionButton";
 
 const techStack = [
   {
@@ -342,6 +343,11 @@ const TechStackSection = () => {
             <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-white/20" />
           </div>
         </motion.div>
+
+        {/* Tech Stack Next Button */}
+        <div className="flex justify-center mt-12 md:mt-16">
+          <NextSectionButton targetId="works" label="Next" />
+        </div>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FileText } from "lucide-react";
+import NextSectionButton from "../ui/NextSectionButton";
 
 const AboutMeSection = () => {
   const containerRef = useRef(null);
@@ -124,27 +125,30 @@ const AboutMeSection = () => {
               </div>
             </div>
 
-            {/* Resume / Portfolio Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="pt-2"
-            >
-              <a
-                href="#" 
-                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full overflow-hidden transition-all duration-300 hover:border-pink-500/40 hover:bg-white/10 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.3)]"
+            {/* Buttons Area */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
               >
-                {/* Pink glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.15)_0%,transparent_70%)]" />
-                
-                <FileText className="relative z-10 w-4 h-4 text-pink-500 group-hover:scale-110 transition-transform duration-300" />
-                <span className="relative z-10 text-xs md:text-sm font-light tracking-[0.3em] text-white/90 group-hover:text-pink-300 uppercase transition-colors">
-                  View RESUME
-                </span>
-              </a>
-            </motion.div>
+                <a
+                  href="#" 
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full overflow-hidden transition-all duration-300 hover:border-pink-500/40 hover:bg-white/10 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.3)]"
+                >
+                  {/* Pink glow on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.15)_0%,transparent_70%)]" />
+                  
+                  <FileText className="relative z-10 w-4 h-4 text-pink-500 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="relative z-10 text-xs md:text-sm font-light tracking-[0.3em] text-white/90 group-hover:text-pink-300 uppercase transition-colors">
+                    View RESUME
+                  </span>
+                </a>
+              </motion.div>
+
+              <NextSectionButton targetId="skills" label="Next" className="mt-0 mb-0" />
+            </div>
           </motion.div>
 
           {/* Contact Links Area */}
@@ -166,7 +170,6 @@ const AboutMeSection = () => {
             </a>
           </motion.div>
         </div>
-
       </div>
     </section>
   );

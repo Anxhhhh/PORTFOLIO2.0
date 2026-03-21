@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@400..700&family=Inter:wght@300;400;700&display=swap');
 @import "tailwindcss";
 
+html {
+  scroll-behavior: initial !important;
+}
+
 @theme {
   --font-headline: "Anton", sans-serif;
   --font-script: "Caveat", cursive;
@@ -111,4 +115,48 @@
   .projects-rail:hover::-webkit-scrollbar {
     opacity: 1;
   }
+}
+
+/* Contact Section Animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Input floating label styles */
+input:focus + div,
+textarea:focus + div {
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+/* Glassmorphism enhancement */
+.glass-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Neon glow pulse effect */
+@keyframes neon-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3),
+                0 0 40px rgba(16, 185, 129, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.5),
+                0 0 60px rgba(16, 185, 129, 0.2);
+  }
+}
+
+.neon-glow {
+  animation: neon-pulse 2s ease-in-out infinite;
 }
