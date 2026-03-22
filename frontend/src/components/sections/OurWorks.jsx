@@ -68,12 +68,12 @@ const EmptyState = ({ section }) => {
       className="flex flex-col items-center justify-center min-h-[50vh] text-center px-4"
     >
       <div className="relative mb-8">
-        <div className="absolute inset-0 bg-red-500/10 blur-2xl rounded-full" />
+        <div className="absolute inset-0 bg-pink-500/10 blur-2xl rounded-full" />
         <div className="relative w-20 h-20 rounded-full border border-white/10 bg-zinc-900/80 flex items-center justify-center">
           <IconComponent className="w-8 h-8 text-gray-500" strokeWidth={1.5} />
         </div>
       </div>
-      <span className="text-xs font-light tracking-[0.3em] text-red-500 uppercase mb-4">
+      <span className="text-xs font-light tracking-[0.3em] text-pink-500 uppercase mb-4">
         {section.eyebrow}
       </span>
       <h3 className="text-2xl md:text-3xl font-light text-white/80 mb-4 tracking-wide">
@@ -84,7 +84,7 @@ const EmptyState = ({ section }) => {
       </p>
       <div className="mt-8 flex items-center gap-2 text-gray-600 text-xs tracking-widest uppercase">
         <span>Coming</span>
-        <span className="w-1 h-1 rounded-full bg-red-500/50" />
+        <span className="w-1 h-1 rounded-full bg-pink-500/50" />
         <span>Soon</span>
       </div>
     </motion.div>
@@ -110,7 +110,7 @@ const ProjectCard = ({ project, index }) => {
         <div className="relative z-10 p-6 md:p-8 flex flex-col h-full">
           <div className="flex-1">
             <div className="flex items-center justify-between mb-6">
-              <span className="text-[10px] font-light tracking-[0.3em] text-red-400 uppercase">
+              <span className="text-[10px] font-light tracking-[0.3em] text-pink-400 uppercase">
                 {project.category}
               </span>
               <span className="text-xs text-white/50 font-light">
@@ -139,8 +139,8 @@ const ProjectCard = ({ project, index }) => {
               ))}
             </div>
             
-            <button className="group/btn relative px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden transition-all duration-300 hover:border-red-500/50 hover:bg-white/20">
-              <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.15)_0%,transparent_70%)]" />
+            <button className="group/btn relative px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden transition-all duration-300 hover:border-pink-500/50 hover:bg-white/20">
+              <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.15)_0%,transparent_70%)]" />
               <span className="relative z-10 flex items-center gap-2 text-xs font-light tracking-widest text-white uppercase group-hover/btn:text-white transition-colors">
                 View Concept
                 <ChevronRight className="w-3 h-3" strokeWidth={1.5} />
@@ -150,8 +150,8 @@ const ProjectCard = ({ project, index }) => {
         </div>
         
         <div className="absolute bottom-0 left-0 w-12 h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-2 translate-y-2">
-          <div className="absolute bottom-4 left-4 w-2 h-[1px] bg-gradient-to-r from-red-500/40 to-transparent" />
-          <div className="absolute bottom-4 left-4 w-[1px] h-2 bg-gradient-to-t from-red-500/40 to-transparent" />
+          <div className="absolute bottom-4 left-4 w-2 h-[1px] bg-gradient-to-r from-pink-500/40 to-transparent" />
+          <div className="absolute bottom-4 left-4 w-[1px] h-2 bg-gradient-to-t from-pink-500/40 to-transparent" />
         </div>
       </div>
     </motion.div>
@@ -166,7 +166,7 @@ const CategoryCard = ({ section, onClick }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative overflow-hidden rounded-3xl text-left transition-all duration-500 hover:-translate-y-2 min-h-[320px] flex flex-col justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500/50"
+      className="group relative overflow-hidden rounded-3xl text-left transition-all duration-500 hover:-translate-y-2 min-h-[320px] flex flex-col justify-between focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500/50"
     >
       <div 
         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
@@ -181,7 +181,7 @@ const CategoryCard = ({ section, onClick }) => {
             <IconComponent className="w-7 h-7 text-white/80 group-hover:text-white transition-colors duration-500" strokeWidth={1.5} />
           </div>
           
-          <span className="text-xs font-light tracking-[0.3em] text-red-400 uppercase block mb-3">
+          <span className="text-xs font-light tracking-[0.3em] text-pink-400 uppercase block mb-3">
             {section.eyebrow}
           </span>
           
@@ -199,7 +199,7 @@ const CategoryCard = ({ section, onClick }) => {
             Click to explore
           </span>
           <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-2 group-hover:translate-x-0">
-            <ArrowRight className="w-5 h-5 text-red-400" strokeWidth={1.5} />
+            <ArrowRight className="w-5 h-5 text-pink-400" strokeWidth={1.5} />
           </div>
         </div>
       </div>
@@ -378,7 +378,7 @@ const ProjectsPanel = ({ onBack }) => {
             >
               <ArrowLeft className="w-4 h-4 text-gray-400" strokeWidth={1.5} />
             </button>
-            <span className="text-[10px] font-light tracking-[0.3em] text-red-500 uppercase">
+            <span className="text-[10px] font-light tracking-[0.3em] text-pink-500 uppercase">
               {section.eyebrow}
             </span>
           </div>
@@ -390,14 +390,14 @@ const ProjectsPanel = ({ onBack }) => {
         <div className="flex gap-2">
           <button
             onClick={() => scrollProjects("prev")}
-            className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500/50"
+            className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500/50"
             aria-label="Scroll projects left"
           >
             <ArrowLeft className="w-4 h-4 text-gray-400" strokeWidth={1.5} />
           </button>
           <button
             onClick={() => scrollProjects("next")}
-            className="p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500/50"
+            className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500/50"
             aria-label="Scroll projects right"
           >
             <ArrowRight className="w-4 h-4 text-gray-400" strokeWidth={1.5} />
@@ -445,7 +445,7 @@ const ComingSoonPanel = ({ section, onBack }) => {
           >
             <ArrowLeft className="w-4 h-4 text-gray-400" strokeWidth={1.5} />
           </button>
-          <span className="text-[10px] font-light tracking-[0.3em] text-red-500 uppercase">
+          <span className="text-[10px] font-light tracking-[0.3em] text-pink-500 uppercase">
             {section.eyebrow}
           </span>
         </div>

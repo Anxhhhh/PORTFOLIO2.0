@@ -25,12 +25,12 @@ export default function App() {
     <SmoothScroll>
       <Preloader isLoading={isLoading} />
       <Navbar show={!isLoading} />
-      
+
       <div className="relative bg-black">
         <Hero visible={!isLoading} />
         <AboutMeSection />
         <Skills />
-        
+
         <div className="relative z-20 bg-black border-t border-white/5">
           <TechStack />
           <OurWorks />

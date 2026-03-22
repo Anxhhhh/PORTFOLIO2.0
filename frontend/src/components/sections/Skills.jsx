@@ -42,24 +42,24 @@ const SkillCard = ({ skill, variants }) => {
         transformStyle: "preserve-3d" 
       }}
       whileHover={{ y: -5 }}
-      className="group relative bg-zinc-900/80 backdrop-blur-2xl border border-white/10 p-6 md:p-8 min-h-[250px] flex flex-col justify-between hover:bg-zinc-800/90 hover:border-red-500/40 transition-all duration-500 overflow-hidden cursor-pointer shadow-2xl"
+      className="group relative bg-zinc-900/80 backdrop-blur-2xl border border-white/10 p-6 md:p-8 min-h-[250px] flex flex-col justify-between hover:bg-zinc-800/90 hover:border-emerald-500/40 transition-all duration-500 overflow-hidden cursor-pointer shadow-2xl"
     >
       {/* Glossy Border Reveal */}
       <motion.div 
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{
-          background: useMotionTemplate`radial-gradient(200px circle at ${x}px ${y}px, rgba(239,68,68,0.15), transparent)`
+          background: useMotionTemplate`radial-gradient(200px circle at ${x}px ${y}px, rgba(16,185,129,0.15), transparent)`
         }}
       />
       
       {/* Premium Inner Glow */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(239,68,68,0.05)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(16,185,129,0.05)_0%,transparent_70%)]" />
 
       <div 
 	style={{ transform: "translateZ(60px)" }}
-	className="relative z-10 w-12 h-12 rounded-full border border-red-500/20 bg-red-500/5 flex items-center justify-center mb-12 group-hover:bg-red-500/20 group-hover:border-red-500/40 group-hover:scale-110 transition-all duration-500 shadow-[0_0_20px_rgba(239,68,68,0.0)] group-hover:shadow-[0_0_25px_rgba(239,68,68,0.2)]"
+	className="relative z-10 w-12 h-12 rounded-full border border-emerald-500/20 bg-emerald-500/5 flex items-center justify-center mb-12 group-hover:bg-emerald-500/20 group-hover:border-emerald-500/40 group-hover:scale-110 transition-all duration-500 shadow-[0_0_20px_rgba(16,185,129,0.0)] group-hover:shadow-[0_0_25px_rgba(16,185,129,0.2)]"
       >
-	<Icon className="w-5 h-5 text-red-500 group-hover:text-red-400 group-hover:rotate-[360deg] transition-all duration-700" strokeWidth={1.5} />
+	<Icon className="w-5 h-5 text-emerald-500 group-hover:text-emerald-400 group-hover:rotate-[360deg] transition-all duration-700" strokeWidth={1.5} />
       </div>
 
       <div style={{ transform: "translateZ(40px)" }} className="relative z-10">

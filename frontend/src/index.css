@@ -12,14 +12,23 @@ html {
 }
 
 /* Typography Utilities */
-.font-headline { font-family: var(--font-headline); }
-.font-script { font-family: var(--font-script); }
-.font-body { font-family: var(--font-body); }
+.font-headline {
+  font-family: var(--font-headline);
+}
+
+.font-script {
+  font-family: var(--font-script);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
 
 /* Grain Texture */
 .bg-grain {
   position: relative;
 }
+
 .bg-grain::before {
   content: "";
   position: absolute;
@@ -51,9 +60,36 @@ html {
   font-style: normal;
 }
 
-/* Custom Scrollbar for Smooth Takeover */
+/* Global Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ec4899, #10b981);
+  border-radius: 20px;
+  border: 2px solid #000000;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #f472b6, #34d399);
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ec4899 #000000;
+}
+
+/* Custom Scrollbar for specific containers if needed */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -80,13 +116,13 @@ html {
 }
 
 .projects-rail::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
-  transition: background 0.3s ease;
+  background: linear-gradient(to right, #ec4899, #10b981);
+  border-radius: 20px;
+  transition: all 0.3s ease;
 }
 
 .projects-rail::-webkit-scrollbar-thumb:hover {
-  background: rgba(239, 68, 68, 0.5);
+  background: linear-gradient(to right, #f472b6, #34d399);
 }
 
 .projects-rail::-webkit-scrollbar-corner {
@@ -111,7 +147,7 @@ html {
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
+
   .projects-rail:hover::-webkit-scrollbar {
     opacity: 1;
   }
@@ -119,8 +155,15 @@ html {
 
 /* Contact Section Animations */
 @keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .animate-gradient {
@@ -129,31 +172,32 @@ html {
 }
 
 /* Input floating label styles */
-input:focus + div,
-textarea:focus + div {
+input:focus+div,
+textarea:focus+div {
   border-color: rgba(16, 185, 129, 0.5);
 }
 
 /* Glassmorphism enhancement */
 .glass-panel {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
 /* Neon glow pulse effect */
 @keyframes neon-pulse {
-  0%, 100% { 
+
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.3),
-                0 0 40px rgba(16, 185, 129, 0.1);
+      0 0 40px rgba(16, 185, 129, 0.1);
   }
-  50% { 
+
+  50% {
     box-shadow: 0 0 30px rgba(16, 185, 129, 0.5),
-                0 0 60px rgba(16, 185, 129, 0.2);
+      0 0 60px rgba(16, 185, 129, 0.2);
   }
 }
 

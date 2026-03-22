@@ -207,7 +207,7 @@ const TechCard = ({ item, index }) => {
         transformStyle: "preserve-3d"
       }}
       whileHover={{ y: -6, transition: { duration: 0.3 } }}
-      className="group relative h-44 md:h-48 bg-zinc-900/70 backdrop-blur-xl border border-white/[0.06] rounded-2xl flex flex-col items-center justify-center p-6 transition-all duration-500 hover:border-red-500/40 hover:bg-zinc-800/80 cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-red-500/5"
+      className="group relative h-44 md:h-48 bg-zinc-900/70 backdrop-blur-xl border border-white/[0.06] rounded-2xl flex flex-col items-center justify-center p-6 transition-all duration-500 hover:border-emerald-500/40 hover:bg-zinc-800/80 cursor-pointer overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-emerald-500/5 transition-all"
     >
       <motion.div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
@@ -216,7 +216,7 @@ const TechCard = ({ item, index }) => {
         }}
       />
       
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(239,68,68,0.08)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,rgba(16,185,129,0.08)_0%,transparent_60%)]" />
       
       <div 
         style={{ transform: "translateZ(40px)" }}
@@ -232,20 +232,20 @@ const TechCard = ({ item, index }) => {
           <h3 className="text-sm md:text-base font-medium text-gray-200 group-hover:text-white transition-all duration-300 tracking-wide">
             {item.name}
           </h3>
-          <span className="text-[10px] md:text-xs text-gray-500 group-hover:text-red-400/70 transition-colors duration-300 font-light tracking-widest uppercase mt-1 block">
+          <span className="text-[10px] md:text-xs text-gray-500 group-hover:text-emerald-400/70 transition-colors duration-300 font-light tracking-widest uppercase mt-1 block">
             {item.category}
           </span>
         </div>
       </div>
 
       <div className="absolute top-0 right-0 w-10 h-10 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-1 -translate-y-1">
-        <div className="absolute top-3 right-3 w-3 h-[1px] bg-gradient-to-l from-red-500/60 to-transparent" />
-        <div className="absolute top-3 right-3 w-[1px] h-3 bg-gradient-to-b from-red-500/60 to-transparent" />
+        <div className="absolute top-3 right-3 w-3 h-[1px] bg-gradient-to-l from-emerald-500/60 to-transparent" />
+        <div className="absolute top-3 right-3 w-[1px] h-3 bg-gradient-to-b from-emerald-500/60 to-transparent" />
       </div>
       
       <div className="absolute bottom-0 left-0 w-10 h-10 opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-1 translate-y-1">
-        <div className="absolute bottom-3 left-3 w-3 h-[1px] bg-gradient-to-r from-red-500/60 to-transparent" />
-        <div className="absolute bottom-3 left-3 w-[1px] h-3 bg-gradient-to-t from-red-500/60 to-transparent" />
+        <div className="absolute bottom-3 left-3 w-3 h-[1px] bg-gradient-to-r from-emerald-500/60 to-transparent" />
+        <div className="absolute bottom-3 left-3 w-[1px] h-3 bg-gradient-to-t from-emerald-500/60 to-transparent" />
       </div>
     </motion.div>
   );
@@ -278,9 +278,9 @@ const TechStackSection = () => {
       />
       
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-full pointer-events-none">
-        <div className="absolute top-[10%] left-[-5%] w-[35%] h-[35%] bg-red-500/4 blur-[140px] rounded-full" />
+        <div className="absolute top-[10%] left-[-5%] w-[35%] h-[35%] bg-emerald-500/4 blur-[140px] rounded-full" />
         <div className="absolute top-[60%] right-[-10%] w-[30%] h-[30%] bg-zinc-800/10 blur-[120px] rounded-full" />
-        <div className="absolute top-[30%] left-[60%] w-[20%] h-[20%] bg-red-600/5 blur-[100px] rounded-full" />
+        <div className="absolute top-[30%] left-[60%] w-[20%] h-[20%] bg-emerald-600/5 blur-[100px] rounded-full" />
       </div>
 
       <div className="max-w-[1400px] mx-auto relative z-10">
@@ -295,8 +295,8 @@ const TechStackSection = () => {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-4 mb-6"
           >
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-red-500 to-red-500/50" />
-            <span className="text-xs md:text-sm font-light tracking-[0.5em] text-red-500 uppercase">
+            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-emerald-500 to-emerald-500/50" />
+            <span className="text-xs md:text-sm font-light tracking-[0.5em] text-emerald-500 uppercase">
               Tech Stack
             </span>
           </motion.div>

@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FileText } from "lucide-react";
+import { FileText, Download } from "lucide-react";
 import NextSectionButton from "../ui/NextSectionButton";
+import ResumeModal from "../ui/ResumeModal";
 
 const AboutMeSection = () => {
   const containerRef = useRef(null);
   
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
@@ -19,7 +22,8 @@ const AboutMeSection = () => {
   const float3Y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <section 
+    <>
+      <section 
       ref={containerRef}
       id="about"
       className="relative min-h-screen bg-black text-white py-24 px-6 md:px-12 overflow-hidden flex items-center justify-center"
@@ -132,9 +136,10 @@ const AboutMeSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 viewport={{ once: true }}
+                className="flex flex-col sm:flex-row items-center gap-4"
               >
-                <a
-                  href="#" 
+                <button
+                  onClick={() => setIsResumeOpen(true)}
                   className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full overflow-hidden transition-all duration-300 hover:border-pink-500/40 hover:bg-white/10 active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.3)]"
                 >
                   {/* Pink glow on hover */}
@@ -144,6 +149,16 @@ const AboutMeSection = () => {
                   <span className="relative z-10 text-xs md:text-sm font-light tracking-[0.3em] text-white/90 group-hover:text-pink-300 uppercase transition-colors">
                     View RESUME
                   </span>
+                </button>
+
+                {/* Direct Download Link */}
+                <a
+                  href="/resume.pdf"
+                  download="Anshraj_Singh_Resume.pdf"
+                  className="group flex items-center gap-2 text-xs md:text-sm font-mono text-white/70 hover:text-pink-400 transition-colors uppercase tracking-widest"
+                >
+                  <Download className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                  Download PDF
                 </a>
               </motion.div>
 
@@ -172,6 +187,12 @@ const AboutMeSection = () => {
         </div>
       </div>
     </section>
+    
+      <ResumeModal 
+        isOpen={isResumeOpen} 
+        onClose={() => setIsResumeOpen(false)} 
+      />
+    </>
   );
 };
 
