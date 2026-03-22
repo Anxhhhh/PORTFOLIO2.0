@@ -146,6 +146,7 @@ const ProjectCard = ({ project, index }) => {
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
+              draggable={false}
               className="group/btn relative px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden transition-all duration-300 hover:border-pink-500/50 hover:bg-white/20 inline-block text-center"
             >
               <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.15)_0%,transparent_70%)]" />
@@ -228,65 +229,47 @@ const ProjectsPanel = ({ onBack }) => {
     const rail = projectRailRef.current;
     if (!rail) return;
 
+    let isScrolling = false;
     const handleWheel = (e) => {
-      if (!isHovering) return;
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      const delta = e.deltaY + e.deltaX;
-      const targetScroll = rail.scrollLeft + delta * 1.2;
-      const maxScroll = rail.scrollWidth - rail.clientWidth;
-      const clampedScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-
-      rail.scrollLeft = clampedScroll;
-    };
-
-    const handleDragEnd = () => {
-      if (!isDragging || !rail) return;
-
-      const { velocity } = scrollStateRef.current;
+      const isHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
       
-      if (Math.abs(velocity) > 0.5) {
-        const startScroll = rail.scrollLeft;
-        const targetScroll = startScroll + velocity * 15;
-        const maxScroll = rail.scrollWidth - rail.clientWidth;
-        const clampedTarget = Math.max(0, Math.min(targetScroll, maxScroll));
+      if (!isHorizontalScroll) {
+        e.preventDefault(); // Always prevent vertical page scroll when over the projects
 
-        const animate = () => {
-          if (!rail) return;
-          const currentScroll = rail.scrollLeft;
-          const diff = clampedTarget - currentScroll;
-          
-          if (Math.abs(diff) > 0.5) {
-            rail.scrollLeft += diff * 0.12;
-            momentumRef.current = requestAnimationFrame(animate);
-          }
-        };
-        momentumRef.current = requestAnimationFrame(animate);
+        if (isScrolling) return; // Prevent multiple scrolls at once
+
+        // Threshold to prevent accidental scrolls from trackpads/high-res mice
+        if (Math.abs(e.deltaY) < 20) return;
+
+        const direction = e.deltaY > 0 ? "next" : "prev";
+        scrollProjects(direction);
+        
+        isScrolling = true;
+        setTimeout(() => {
+          isScrolling = false;
+        }, 400); // Reduced cooldown for better responsiveness
       }
     };
 
     rail.addEventListener("wheel", handleWheel, { passive: false });
-    
-    const dragEndHandler = () => handleDragEnd();
-    rail.addEventListener("mouseup", dragEndHandler);
-    rail.addEventListener("mouseleave", dragEndHandler);
 
     return () => {
       rail.removeEventListener("wheel", handleWheel);
-      rail.removeEventListener("mouseup", dragEndHandler);
-      rail.removeEventListener("mouseleave", dragEndHandler);
       if (momentumRef.current) cancelAnimationFrame(momentumRef.current);
     };
-  }, [isHovering, isDragging]);
+  }, []);
 
   const scrollProjects = (direction) => {
     if (!projectRailRef.current) return;
     const rail = projectRailRef.current;
-    const amount = rail.clientWidth * 0.8;
+    
+    // Calculate total card width: card width + gap (6 is gap-6 which is 24px)
+    const cardWidth = rail.querySelector('.group')?.clientWidth || rail.clientWidth * 0.8;
+    const gap = 24; 
+    const scrollAmount = cardWidth + gap;
+
     rail.scrollBy({
-      left: direction === "next" ? amount : -amount,
+      left: direction === "next" ? scrollAmount : -scrollAmount,
       behavior: "smooth",
     });
   };
@@ -381,7 +364,7 @@ const ProjectsPanel = ({ onBack }) => {
           <div className="flex items-center gap-3 mb-3">
             <button
               onClick={onBack}
-              className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500/50"
+              className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500/50"
               aria-label="Go back to categories"
             >
               <ArrowLeft className="w-4 h-4 text-gray-400" strokeWidth={1.5} />
@@ -426,7 +409,8 @@ const ProjectsPanel = ({ onBack }) => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         style={{ cursor: isDragging ? "grabbing" : "grab" }}
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 select-none scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        data-lenis-prevent
+        className="flex gap-6 overflow-x-auto pb-4 select-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {placeholderProjects.map((project, index) => (
           <ProjectCard key={project.title} project={project} index={index} />
@@ -448,7 +432,7 @@ const ComingSoonPanel = ({ section, onBack }) => {
         <div className="flex items-center gap-3 mb-3">
           <button
             onClick={onBack}
-            className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500/50"
+            className="p-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-500/50"
             aria-label="Go back to categories"
           >
             <ArrowLeft className="w-4 h-4 text-gray-400" strokeWidth={1.5} />
