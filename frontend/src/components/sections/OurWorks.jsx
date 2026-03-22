@@ -32,28 +32,31 @@ const workSections = {
 
 const placeholderProjects = [
   {
-    title: "Nova Commerce",
+    title: "NeuroKart",
     category: "E-commerce Platform",
     year: "2026",
     summary: "A modern shopping experience with real-time inventory and seamless checkout flow.",
     stack: ["React", "Node.js", "MongoDB", "Stripe"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    url: "https://neurokart.netlify.app/"
   },
   {
-    title: "Pulse Board",
-    category: "Analytics Dashboard",
+    title: "SYNOPTIC",
+    category: "Weather Forecast Service",
     year: "2026",
-    summary: "Real-time analytics platform with customizable widgets and team collaboration.",
-    stack: ["React", "Tailwind", "Firebase", "D3.js"],
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    summary: "A sleek, real-time weather tracking app providing accurate forecasts and environmental data with high-end interactive visualizations.",
+    stack: ["React", "OpenWeather API", "Tailwind CSS", "Chart.js"],
+    image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80",
+    url: "https://anshweatherapp.netlify.app/"
   },
   {
     title: "Echo Space",
     category: "Social Platform",
     year: "2025",
-    summary: "A minimalist social space for meaningful conversations and creative sharing.",
-    stack: ["Next.js", "PostgreSQL", "AWS", "Framer Motion"],
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
+    summary: "A minimalistic music player with spatial audio implementation and a focus on essential aesthetics.",
+    stack: ["React", "Three.js", "Web Audio API", "Framer"],
+    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+    url: "#"
   },
 ];
 
@@ -139,13 +142,18 @@ const ProjectCard = ({ project, index }) => {
               ))}
             </div>
             
-            <button className="group/btn relative px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden transition-all duration-300 hover:border-pink-500/50 hover:bg-white/20">
+            <a 
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group/btn relative px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden transition-all duration-300 hover:border-pink-500/50 hover:bg-white/20 inline-block text-center"
+            >
               <div className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.15)_0%,transparent_70%)]" />
               <span className="relative z-10 flex items-center gap-2 text-xs font-light tracking-widest text-white uppercase group-hover/btn:text-white transition-colors">
-                View Concept
+                View 
                 <ChevronRight className="w-3 h-3" strokeWidth={1.5} />
               </span>
-            </button>
+            </a>
           </div>
         </div>
         
