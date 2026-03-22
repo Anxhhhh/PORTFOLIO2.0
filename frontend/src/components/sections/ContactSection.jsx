@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { 
   Mail, Phone, MapPin, ArrowRight, Send, 
@@ -71,29 +72,39 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
+    // EmailJS Configuration
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // These should match the variables in your EmailJS template
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      to_name: 'Ansh raj Singh Thakur',
+      message: formData.message,
+    };
+
     try {
-      const response = await fetch('https://portfolio2-0-yhig.onrender.com/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (response.status === 200) {
         setIsSubmitted(true);
         setFormData({ name: "", email: "", message: "" });
         setTimeout(() => {
           setIsSubmitted(false);
         }, 5000);
       } else {
-        alert(data.error || 'Something went wrong. Please try again.');
+        throw new Error('Failed to send message');
       }
     } catch (error) {
-      console.error('Submission error:', error);
-      alert('Failed to connect to the server. Please check if the backend is running.');
+      console.error('EmailJS Error:', error);
+      alert('Failed to send message. Please ensure your EmailJS keys are correctly set in the .env file.');
     } finally {
       setIsSubmitting(false);
     }
