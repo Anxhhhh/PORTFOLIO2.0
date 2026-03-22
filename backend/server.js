@@ -7,15 +7,17 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "*",
+}));
 app.use(express.json());
 
-// ✅ Root route (fixes "Cannot GET /")
+// Root route
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
 
-// Nodemailer transporter
+// ✅ Nodemailer transporter (IMPROVED)
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -24,39 +26,50 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Verify transporter
+// ✅ Verify transporter (IMPORTANT DEBUG)
 transporter.verify((error, success) => {
   if (error) {
-    console.error('Transporter Error:', error);
+    console.error('❌ Transporter Error:', error);
   } else {
-    console.log('Server is ready to send emails ✅');
+    console.log('✅ Server is ready to send emails');
   }
 });
 
 // Contact API
 app.post('/api/contact', async (req, res) => {
+  console.log("📩 Incoming request:", req.body);
+
   const { name, email, message } = req.body;
 
   // Validation
   if (!name || !email || !message) {
+    console.log("❌ Missing fields");
     return res.status(400).json({ error: 'All fields are required' });
   }
 
   try {
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'anshforworkhere@gmail.com',
+      to: process.env.EMAIL_USER, // send to yourself
       subject: `New Portfolio Message from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
 
-    await transporter.sendMail(mailOptions);
+    // ✅ Timeout protection (VERY IMPORTANT)
+    await Promise.race([
+      transporter.sendMail(mailOptions),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Email timeout")), 10000)
+      )
+    ]);
+
+    console.log("✅ Email sent successfully");
 
     res.status(200).json({ message: 'Message sent successfully ✅' });
 
   } catch (error) {
-    console.error('EMAIL ERROR:', error);
-    res.status(500).json({ error: 'Failed to send message ❌' });
+    console.error("❌ EMAIL ERROR FULL:", error);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -66,5 +79,5 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`🚀 Server running on port ${port}`);
 });
