@@ -121,9 +121,9 @@ const AboutMeSection = () => {
               </div>
 
               <div className="space-y-3">
-                <span className="font-script text-3xl text-pink-400 block pb-1 border-b border-pink-500/20 w-fit">I live to</span>
+                <span className="font-script text-3xl text-pink-400 block pb-1 border-b border-pink-500/20 w-fit">I am driven to</span>
                 <p className="font-body text-sm md:text-base leading-relaxed text-gray-400 font-light">
-                  I love to build modern web applications, explore AI/ML technologies, and create things that are both useful and impactful.
+                  I enjoy building modern web applications and  passionate about leveraging AI/ML to create efficient and impactful solutions.
                 </p>
                 <div className="absolute right-0 bottom-0 text-[120px] font-headline text-white/[0.03] select-none translate-y-12">L</div>
               </div>
