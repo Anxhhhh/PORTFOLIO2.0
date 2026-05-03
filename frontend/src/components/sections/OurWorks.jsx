@@ -32,13 +32,13 @@ const workSections = {
 
 const placeholderProjects = [
   {
-    title: "NeuroKart",
-    category: "E-commerce Platform",
+    title: "ResumeAnalyser",
+    category: "ML",
     year: "2026",
-    summary: "A modern shopping experience with real-time inventory and seamless checkout flow.",
-    stack: ["React", "Node.js", "MongoDB", "Stripe"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    url: "https://neurokart.netlify.app/"
+    summary: "A ML web-app which helps in generating the resume and also analyzes it",
+    stack: ["React", "Flask", "Sqlite"],
+    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+    url: "https://makeyourresumebetter.netlify.app/"
   },
   {
     title: "SYNOPTIC",
@@ -50,13 +50,22 @@ const placeholderProjects = [
     url: "https://anshweatherapp.netlify.app/"
   },
   {
-    title: "Echo Space",
-    category: "Social Platform",
-    year: "2025",
-    summary: "A minimalistic music player with spatial audio implementation and a focus on essential aesthetics.",
-    stack: ["React", "Three.js", "Web Audio API", "Framer"],
+    title: "NeuroKart",
+    category: "E-commerce Platform",
+    year: "2026",
+    summary: "A modern shopping experience with real-time inventory and seamless checkout flow.",
+    stack: ["React", "Node.js", "MongoDB", "Stripe"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    url: "https://neurokart.netlify.app/"
+  },
+  {
+    title: "MyPortFolio",
+    category: "Web-app",
+    year: "2026",
+    summary: "A web-app for my portfolio",
+    stack: ["React", "Node.js", "MongoDB", "Stripe"],
     image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
-    url: "#"
+    url: "https://anshhhfolio.netlify.app/"
   },
 ];
 
