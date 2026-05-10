@@ -67,6 +67,15 @@ const placeholderProjects = [
     image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
     url: "https://anshhhfolio.netlify.app/"
   },
+  {
+    title: "CodeCollab",
+    category: "Chat Application",
+    year: "2026",
+    summary: "A web-app for chat",
+    stack: ["React", "Node.js", "MongoDB", "Socket.io"],
+    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+    url: "https://livelint.netlify.app/"
+  }
 ];
 
 const EmptyState = ({ section }) => {
