@@ -68,7 +68,7 @@ const placeholderProjects = [
     url: "https://anshhhfolio.netlify.app/"
   },
   {
-    title: "CodeCollab",
+    title: "CodeColab",
     category: "Chat Application",
     year: "2026",
     summary: "A web-app for chat",
