@@ -52,22 +52,13 @@ const placeholderProjects = [
     url: "https://makeyourresumebetter.netlify.app/"
   },
   {
-    title: "SYNOPTIC",
-    category: "Weather Forecast Service",
+    title: "CodeColab",
+    category: "Chat Application",
     year: "2026",
-    summary: "A sleek, real-time weather tracking app providing accurate forecasts and environmental data with high-end interactive visualizations.",
-    stack: ["React", "OpenWeather API", "Tailwind CSS", "Chart.js"],
-    image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80",
-    url: "https://anshweatherapp.netlify.app/"
-  },
-  {
-    title: "NeuroKart",
-    category: "E-commerce Platform",
-    year: "2026",
-    summary: "A modern shopping experience with real-time inventory and seamless checkout flow.",
-    stack: ["React", "Node.js", "MongoDB", "Stripe"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-    url: "https://neurokart.netlify.app/"
+    summary: "A web-app for chat",
+    stack: ["React", "Node.js", "MongoDB", "Socket.io"],
+    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+    url: "https://livelint.netlify.app/"
   },
   {
     title: "MyPortFolio",
@@ -79,13 +70,22 @@ const placeholderProjects = [
     url: "https://anshhhfolio.netlify.app/"
   },
   {
-    title: "CodeColab",
-    category: "Chat Application",
+    title: "NeuroKart",
+    category: "E-commerce Platform",
     year: "2026",
-    summary: "A web-app for chat",
-    stack: ["React", "Node.js", "MongoDB", "Socket.io"],
-    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
-    url: "https://livelint.netlify.app/"
+    summary: "A modern shopping experience with real-time inventory and seamless checkout flow.",
+    stack: ["React", "Node.js", "MongoDB", "Stripe"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    url: "https://neurokart.netlify.app/"
+  },
+  {
+    title: "SYNOPTIC",
+    category: "Weather Forecast Service",
+    year: "2026",
+    summary: "A sleek, real-time weather tracking app providing accurate forecasts and environmental data with high-end interactive visualizations.",
+    stack: ["React", "OpenWeather API", "Tailwind CSS", "Chart.js"],
+    image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800&q=80",
+    url: "https://anshweatherapp.netlify.app/"
   }
 ];
 
