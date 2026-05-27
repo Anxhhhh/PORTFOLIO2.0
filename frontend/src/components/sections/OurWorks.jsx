@@ -129,7 +129,7 @@ const ProjectCard = ({ project, index }) => {
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative min-w-[85vw] md:min-w-[45vw] lg:min-w-[30vw] snap-center flex-shrink-0"
+      className="group relative min-w-[85vw] max-w-[85vw] md:min-w-[45vw] md:max-w-[45vw] lg:min-w-[30vw] lg:max-w-[30vw] snap-center flex-shrink-0"
     >
       <div className="relative overflow-hidden rounded-3xl min-h-[380px] flex flex-col justify-between transition-all duration-500">
         <div 
@@ -154,7 +154,7 @@ const ProjectCard = ({ project, index }) => {
               {project.title}
             </h3>
             
-            <p className="text-gray-300/80 text-sm font-light leading-relaxed mb-6">
+            <p className="text-gray-300/80 text-sm font-light leading-relaxed mb-6 line-clamp-3">
               {project.summary}
             </p>
           </div>
