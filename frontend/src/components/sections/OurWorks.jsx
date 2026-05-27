@@ -32,6 +32,17 @@ const workSections = {
 
 const placeholderProjects = [
   {
+  title: "Web Collab OS",
+  category: "Web-Based Operating System",
+  year: "2026",
+  summary:
+    "A fully interactive web-based operating system featuring a desktop environment, file and folder management, nested directories, real-time collaboration with WebSockets, connected users panel, and a modern responsive UI inspired by real operating systems.",
+  stack: ["React", "Node.js", "WebSocket", "Tailwind CSS"],
+  image:
+    "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
+  url: "https://webcol-os.netlify.app/"
+},
+  {
     title: "ResumeAnalyser",
     category: "ML",
     year: "2026",
