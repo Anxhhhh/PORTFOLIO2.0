@@ -1,11 +1,47 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import gsap from "gsap";
 import NextSectionButton from "../ui/NextSectionButton";
+import { motion, useAnimation } from "framer-motion";
 
 // ============================================================
 // Hero Component — Premium Animated Version
 // All 8 animations from HERO_ANIMATION_README.md
 // ============================================================
+
+const DraggableNote = ({ children, className, dragConstraints }) => {
+  const controls = useAnimation();
+  const timeoutRef = useRef(null);
+
+  const handleDragStart = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  };
+
+  const handleDragEnd = () => {
+    timeoutRef.current = setTimeout(() => {
+      controls.start({ x: 0, y: 0, transition: { duration: 1.5, ease: "easeInOut" } });
+    }, 2500); // Stay for 2.5 seconds before returning
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+
+  return (
+    <motion.div
+      drag
+      animate={controls}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+      whileDrag={{ cursor: "grabbing", zIndex: 50, scale: 1.05 }}
+      dragConstraints={dragConstraints}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 
 const ANSH_LETTERS = "ANSHRAJ".split("");
@@ -382,117 +418,161 @@ export default function Hero({ visible }) {
       {/* ── Sticky Notes ─────────────────────────────────────── */}
 
       {/* Note 1 — top-left */}
-      <div
-        ref={el => noteRefs.current[0] = el}
-        onMouseEnter={(e) => {
-          gsap.to(e.currentTarget, { 
-            scale: 1.05, 
-            rotate: -2, 
-            borderColor: "rgba(16,185,129,0.3)", 
-            backgroundColor: "rgba(16,185,129,0.05)",
-            duration: 0.4, 
-            ease: "power2.out" 
-          });
-        }}
-        onMouseLeave={(e) => {
-          gsap.to(e.currentTarget, { 
-            scale: 1, 
-            rotate: 0, 
-            borderColor: "rgba(255,255,255,0.09)", 
-            backgroundColor: "rgba(12,12,12,0.82)",
-            duration: 0.6, 
-            ease: "elastic.out(1, 0.5)" 
-          });
-        }}
-        className="hidden lg:flex absolute top-[22%] left-[4%] flex-col gap-2 p-5 rounded-2xl z-20 max-w-[220px] cursor-default transition-colors duration-300"
-        style={{
-          background: "rgba(12,12,12,0.82)",
-          border: "1px solid rgba(255,255,255,0.09)",
-          backdropFilter: "blur(14px)",
-          opacity: 0,
-        }}
+      <DraggableNote
+        dragConstraints={{ left: -800, right: 800, top: -800, bottom: 800 }}
+        className="hidden lg:flex absolute top-[22%] left-[4%] z-20 cursor-grab"
       >
-        <span className="text-[10px] font-mono text-emerald-400/80 tracking-[0.25em] uppercase mb-1">About me</span>
-        <p className="text-[13px] leading-[1.65] text-white/80 font-light">
-          Crafting digital experiences that push the boundaries of web technology.
-        </p>
-      </div>
+        <div
+          ref={el => noteRefs.current[0] = el}
+          onMouseEnter={(e) => {
+            gsap.to(e.currentTarget, { 
+              scale: 1.05, 
+              rotate: -2, 
+              borderColor: "rgba(16,185,129,0.3)", 
+              backgroundColor: "rgba(16,185,129,0.05)",
+              duration: 0.4, 
+              ease: "power2.out" 
+            });
+          }}
+          onMouseLeave={(e) => {
+            gsap.to(e.currentTarget, { 
+              scale: 1, 
+              rotate: 0, 
+              borderColor: "rgba(255,255,255,0.09)", 
+              backgroundColor: "rgba(12,12,12,0.82)",
+              duration: 0.6, 
+              ease: "elastic.out(1, 0.5)" 
+            });
+          }}
+          className="flex flex-col gap-2 p-5 rounded-2xl max-w-[220px] transition-colors duration-300"
+          style={{
+            background: "rgba(12,12,12,0.82)",
+            border: "1px solid rgba(255,255,255,0.09)",
+            backdropFilter: "blur(14px)",
+            opacity: 0,
+          }}
+        >
+          <span className="text-[10px] font-mono text-emerald-400/80 tracking-[0.25em] uppercase mb-1">About me</span>
+          <p className="text-[13px] leading-[1.65] text-white/80 font-light">
+            Crafting digital experiences that push the boundaries of web technology.
+          </p>
+        </div>
+      </DraggableNote>
 
       {/* Note 2 — mid-left */}
-      <div
-        ref={el => noteRefs.current[1] = el}
-        onMouseEnter={(e) => {
-          gsap.to(e.currentTarget, { 
-            scale: 1.05, 
-            rotate: -1, 
-            borderColor: "rgba(16,185,129,0.3)", 
-            backgroundColor: "rgba(16,185,129,0.05)",
-            duration: 0.4, 
-            ease: "power2.out" 
-          });
-        }}
-        onMouseLeave={(e) => {
-          gsap.to(e.currentTarget, { 
-            scale: 1, 
-            rotate: -2.5, 
-            borderColor: "rgba(255,255,255,0.09)", 
-            backgroundColor: "rgba(12,12,12,0.82)",
-            duration: 0.6, 
-            ease: "elastic.out(1, 0.5)" 
-          });
-        }}
-        className="hidden lg:flex absolute top-[52%] left-[3%] flex-col gap-2 p-5 rounded-2xl z-20 max-w-[200px] cursor-default transition-colors duration-300"
-        style={{
-          background: "rgba(12,12,12,0.82)",
-          border: "1px solid rgba(255,255,255,0.09)",
-          backdropFilter: "blur(14px)",
-          transform: "rotate(-2.5deg)",
-          opacity: 0,
-        }}
+      <DraggableNote
+        dragConstraints={{ left: -800, right: 800, top: -800, bottom: 800 }}
+        className="hidden lg:flex absolute top-[52%] left-[3%] z-20 cursor-grab"
       >
-        <span className="text-[10px] font-mono text-emerald-400/80 tracking-[0.25em] uppercase mb-1">Stack</span>
-        <p className="text-[13px] leading-[1.65] text-white/80 font-light">
-          React · Node.js · TypeScript · MongoDB · Tailwind
-        </p>
-      </div>
+        <div
+          ref={el => noteRefs.current[1] = el}
+          onMouseEnter={(e) => {
+            gsap.to(e.currentTarget, { 
+              scale: 1.05, 
+              rotate: -1, 
+              borderColor: "rgba(16,185,129,0.3)", 
+              backgroundColor: "rgba(16,185,129,0.05)",
+              duration: 0.4, 
+              ease: "power2.out" 
+            });
+          }}
+          onMouseLeave={(e) => {
+            gsap.to(e.currentTarget, { 
+              scale: 1, 
+              rotate: -2.5, 
+              borderColor: "rgba(255,255,255,0.09)", 
+              backgroundColor: "rgba(12,12,12,0.82)",
+              duration: 0.6, 
+              ease: "elastic.out(1, 0.5)" 
+            });
+          }}
+          className="flex flex-col gap-2 p-5 rounded-2xl max-w-[200px] transition-colors duration-300"
+          style={{
+            background: "rgba(12,12,12,0.82)",
+            border: "1px solid rgba(255,255,255,0.09)",
+            backdropFilter: "blur(14px)",
+            transform: "rotate(-2.5deg)",
+            opacity: 0,
+          }}
+        >
+          <span className="text-[10px] font-mono text-emerald-400/80 tracking-[0.25em] uppercase mb-1">Stack</span>
+          <p className="text-[13px] leading-[1.65] text-white/80 font-light">
+            React · Node.js · TypeScript · MongoDB · Tailwind
+          </p>
+        </div>
+      </DraggableNote>
+
+      {/* Drag Hint */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        transition={{ delay: 2.5, duration: 1 }}
+        className="hidden lg:block absolute top-[76%] left-[5%] z-10 pointer-events-none animate-pulse"
+        style={{ transform: "rotate(-4deg)" }}
+      >
+        <div className="relative">
+          <p 
+            style={{ fontFamily: 'Javacom, cursive' }} 
+            className="text-2xl md:text-3xl text-emerald-400 tracking-wide"
+          >
+            you can move these around
+          </p>
+          <svg 
+            className="absolute -top-12 left-1/4 w-12 h-12 text-emerald-400"
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="1.5"
+            strokeLinecap="round" 
+            viewBox="0 0 24 24"
+          >
+            <path d="M6 6 Q 16 6 18 20" />
+            <path d="M6 6 L 11 3 M 6 6 L 8 11" />
+          </svg>
+        </div>
+      </motion.div>
 
       {/* Note 3 — right side */}
-      <div
-        ref={el => noteRefs.current[2] = el}
-        onMouseEnter={(e) => {
-          gsap.to(e.currentTarget, { 
-            scale: 1.05, 
-            rotate: 4, 
-            borderColor: "rgba(16,185,129,0.3)", 
-            backgroundColor: "rgba(16,185,129,0.05)",
-            duration: 0.4, 
-            ease: "power2.out" 
-          });
-        }}
-        onMouseLeave={(e) => {
-          gsap.to(e.currentTarget, { 
-            scale: 1, 
-            rotate: 2, 
-            borderColor: "rgba(255,255,255,0.09)", 
-            backgroundColor: "rgba(12,12,12,0.82)",
-            duration: 0.6, 
-            ease: "elastic.out(1, 0.5)" 
-          });
-        }}
-        className="hidden lg:flex absolute top-[30%] right-[4%] flex-col gap-2 p-5 rounded-2xl z-20 max-w-[220px] cursor-default transition-colors duration-300"
-        style={{
-          background: "rgba(12,12,12,0.82)",
-          border: "1px solid rgba(255,255,255,0.09)",
-          backdropFilter: "blur(14px)",
-          transform: "rotate(2deg)",
-          opacity: 0,
-        }}
+      <DraggableNote
+        dragConstraints={{ left: -800, right: 800, top: -800, bottom: 800 }}
+        className="hidden lg:flex absolute top-[30%] right-[4%] z-20 cursor-grab"
       >
-        <span className="text-[10px] font-mono text-emerald-400/80 tracking-[0.25em] uppercase mb-1">Philosophy</span>
-        <p className="text-[13px] leading-[1.65] text-white/80 font-light">
-          The first full-stack developer integrating design thinking to deliver best-in-class experiences.
-        </p>
-      </div>
+        <div
+          ref={el => noteRefs.current[2] = el}
+          onMouseEnter={(e) => {
+            gsap.to(e.currentTarget, { 
+              scale: 1.05, 
+              rotate: 4, 
+              borderColor: "rgba(16,185,129,0.3)", 
+              backgroundColor: "rgba(16,185,129,0.05)",
+              duration: 0.4, 
+              ease: "power2.out" 
+            });
+          }}
+          onMouseLeave={(e) => {
+            gsap.to(e.currentTarget, { 
+              scale: 1, 
+              rotate: 2, 
+              borderColor: "rgba(255,255,255,0.09)", 
+              backgroundColor: "rgba(12,12,12,0.82)",
+              duration: 0.6, 
+              ease: "elastic.out(1, 0.5)" 
+            });
+          }}
+          className="flex flex-col gap-2 p-5 rounded-2xl max-w-[220px] transition-colors duration-300"
+          style={{
+            background: "rgba(12,12,12,0.82)",
+            border: "1px solid rgba(255,255,255,0.09)",
+            backdropFilter: "blur(14px)",
+            transform: "rotate(2deg)",
+            opacity: 0,
+          }}
+        >
+          <span className="text-[10px] font-mono text-emerald-400/80 tracking-[0.25em] uppercase mb-1">Philosophy</span>
+          <p className="text-[13px] leading-[1.65] text-white/80 font-light">
+            The first full-stack developer integrating design thinking to deliver best-in-class experiences.
+          </p>
+        </div>
+      </DraggableNote>
 
       {/* ── Main Content ─────────────────────────────────────── */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 w-full mt-4">

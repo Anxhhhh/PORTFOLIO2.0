@@ -260,24 +260,36 @@ const ProjectsPanel = ({ onBack }) => {
 
     let isScrolling = false;
     const handleWheel = (e) => {
+      // If it's a native horizontal scroll (like trackpad swipe), let it be
       const isHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
-      
-      if (!isHorizontalScroll) {
-        e.preventDefault(); // Always prevent vertical page scroll when over the projects
+      if (isHorizontalScroll) return;
 
-        if (isScrolling) return; // Prevent multiple scrolls at once
+      // Calculate if we've reached boundaries (with 2px tolerance for fractional pixels)
+      const isAtStart = rail.scrollLeft <= 0;
+      const isAtEnd = Math.ceil(rail.scrollLeft + rail.clientWidth) >= rail.scrollWidth - 2;
 
-        // Threshold to prevent accidental scrolls from trackpads/high-res mice
+      const scrollingDown = e.deltaY > 0;
+      const scrollingUp = e.deltaY < 0;
+
+      // Only hijack scroll if we have space to move in the requested direction
+      const canScrollHorizontal = (scrollingDown && !isAtEnd) || (scrollingUp && !isAtStart);
+
+      if (canScrollHorizontal) {
+        e.preventDefault(); // Stop page from scrolling
+
+        if (isScrolling) return;
         if (Math.abs(e.deltaY) < 20) return;
 
-        const direction = e.deltaY > 0 ? "next" : "prev";
+        const direction = scrollingDown ? "next" : "prev";
         scrollProjects(direction);
         
         isScrolling = true;
         setTimeout(() => {
           isScrolling = false;
-        }, 400); // Reduced cooldown for better responsiveness
+        }, 400);
       }
+      // If canScrollHorizontal is false, we DO NOT preventDefault.
+      // This means the user seamlessly continues scrolling down/up the rest of the page!
     };
 
     rail.addEventListener("wheel", handleWheel, { passive: false });
