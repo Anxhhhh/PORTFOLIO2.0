@@ -204,3 +204,16 @@ textarea:focus+div {
 .neon-glow {
   animation: neon-pulse 2s ease-in-out infinite;
 }
+
+/* ── Preloader Utilities ───────────────────────────────────────────────── */
+
+/* Promotes clip-path animation to GPU composite layer for silky 60fps wipe */
+.loader-panel {
+  will-change: clip-path;
+}
+
+/* Applied to <body> while loader is active — prevents scroll bleed-through */
+body.loader-active {
+  overflow: hidden;
+  pointer-events: none;
+}

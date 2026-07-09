@@ -85,14 +85,14 @@ export default function Hero({ visible }) {
   useEffect(() => {
     if (!visible) return;
 
-    const timer = setTimeout(() => {
+    // No delay — start immediately when loader signals complete
       // Set initial hidden states via gsap.set (avoids CSS transition conflicts)
       gsap.set(cornerRefs.current, { opacity: 0, scale: 0.5 });
-      gsap.set(badgeRef.current, { opacity: 0, y: 30, filter: "blur(6px)" });
-      gsap.set(letterRefs.current, { opacity: 0, y: 60, rotateX: -90 });
-      gsap.set(jainRef.current, { opacity: 0, x: -40, skewX: -10 });
-      gsap.set(subtitleRef.current, { opacity: 0, y: 30 });
-      gsap.set(scrollRef.current, { opacity: 0, y: 20 });
+      gsap.set(badgeRef.current, { opacity: 0, y: 20, filter: "blur(6px)" });
+      gsap.set(letterRefs.current, { opacity: 0, y: 40, rotateX: -90 });
+      gsap.set(jainRef.current, { opacity: 0, x: -30, skewX: -10 });
+      gsap.set(subtitleRef.current, { opacity: 0, y: 20 });
+      gsap.set(scrollRef.current, { opacity: 0, y: 15 });
       gsap.set(glowRef.current, { opacity: 0 });
       if (charRefs.current.length) {
         gsap.set(charRefs.current, { opacity: 0 });
@@ -100,73 +100,70 @@ export default function Hero({ visible }) {
 
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
-      // Corner accents
+      // Corner accents + badge fire immediately together
       tl.fromTo(
         cornerRefs.current,
         { opacity: 0, scale: 0.5 },
-        { opacity: 1, scale: 1, duration: 0.6, stagger: 0.1 }
+        { opacity: 1, scale: 1, duration: 0.3, stagger: 0.04 }
       )
-        // Badge with blur reveal
+        // Badge — overlaps corners
         .fromTo(
           badgeRef.current,
-          { opacity: 0, y: 30, filter: "blur(6px)" },
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8 },
-          "-=0.3"
+          { opacity: 0, y: 20, filter: "blur(6px)" },
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.4 },
+          "<0.05"
         )
-        // PRATHAM letter-by-letter 3D flip entrance
+        // Main letters — overlap heavily, appear almost immediately
         .fromTo(
           letterRefs.current,
-          { opacity: 0, y: 60, rotateX: -90 },
-          { opacity: 1, y: 0, rotateX: 0, duration: 0.8, stagger: 0.05 },
-          "-=0.4"
+          { opacity: 0, y: 40, rotateX: -90 },
+          { opacity: 1, y: 0, rotateX: 0, duration: 0.5, stagger: 0.04 },
+          "<0.05"
         )
-        // Sticky notes pop in with the main name
+        // Sticky notes pop in alongside letters
         .fromTo(
           noteRefs.current,
-          { opacity: 0, y: 40, scale: 0.88, filter: "blur(4px)" },
-          { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, stagger: 0.1, ease: "back.out(1.4)" },
-          "<0.4" // Start halfway through the name flip animation
+          { opacity: 0, y: 30, scale: 0.88, filter: "blur(4px)" },
+          { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.4, stagger: 0.07, ease: "back.out(1.4)" },
+          "<0.2"
         )
-        // Jain slides in from left with skew
+        // Singh slides in
         .fromTo(
           jainRef.current,
-          { opacity: 0, x: -40, skewX: -10 },
-          { opacity: 1, x: 0, skewX: 0, duration: 0.9 },
-          "-=0.5"
+          { opacity: 0, x: -30, skewX: -10 },
+          { opacity: 1, x: 0, skewX: 0, duration: 0.45 },
+          "<0.1"
         )
-        // Subtitle section
+        // Subtitle
         .fromTo(
           subtitleRef.current,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8 },
-          "-=0.5"
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.4 },
+          "<0.15"
         )
         // Scroll indicator
         .fromTo(
           scrollRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.6 },
-          "-=0.3"
+          { opacity: 0, y: 15 },
+          { opacity: 1, y: 0, duration: 0.35 },
+          "-=0.15"
         )
-        // Glow reveal
+        // Glow — runs in parallel
         .fromTo(
           glowRef.current,
           { opacity: 0 },
-          { opacity: 1, duration: 1.2 },
-          "-=1.0"
+          { opacity: 1, duration: 0.8 },
+          "<-0.5"
         )
-        // Typewriter effect for subtitle chars
+        // Typewriter chars
         .fromTo(
           charRefs.current,
           { opacity: 0 },
-          { opacity: 1, duration: 0.03, stagger: 0.03, ease: "none" },
-          "-=0.2"
+          { opacity: 1, duration: 0.02, stagger: 0.02, ease: "none" },
+          "-=0.1"
         );
 
       setIsLoaded(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
   }, [visible]);
 
   // ────────────────────────────────────────────────────────────

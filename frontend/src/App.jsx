@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SmoothCursor from "./components/layout/SmoothCursor";
 import Hero from "./components/sections/Hero";
 import AboutMeSection from "./components/sections/AboutMeSection";
@@ -9,21 +9,14 @@ import OurWorks from "./components/sections/OurWorks";
 import ContactSection from "./components/sections/ContactSection";
 import Navbar from "./components/layout/Navbar";
 import Preloader from "./components/layout/Preloader";
+import usePreloader from "./hooks/usePreloader";
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const removeTimer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(removeTimer);
-  }, []);
+  const { isLoading, onComplete } = usePreloader();
 
   return (
     <SmoothScroll>
-      <Preloader isLoading={isLoading} />
+      <Preloader isLoading={isLoading} onComplete={onComplete} />
       <Navbar show={!isLoading} />
 
       <div className="relative bg-black">

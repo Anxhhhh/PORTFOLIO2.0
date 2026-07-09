@@ -131,6 +131,23 @@ const ContactSection = () => {
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-emerald-500/15 via-emerald-500/5 to-transparent rounded-full blur-[150px]" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/10 via-transparent to-transparent rounded-full blur-[120px]" />
+        
+        {/* Massive Background Text Watermark */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center pointer-events-none select-none z-0">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="text-[6rem] md:text-[10rem] lg:text-[14rem] font-black uppercase tracking-tighter whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-b from-white/[0.05] to-white/[0.01]"
+            style={{
+              WebkitTextStroke: "2px rgba(255,255,255,0.08)",
+            }}
+          >
+            CONTACT
+          </motion.span>
+        </div>
+
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
         <motion.div animate={{ y: [0, -30, 0], opacity: [0.3, 0.5, 0.3] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 blur-[80px]" />
         <motion.div animate={{ y: [0, 20, 0], opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }} className="absolute bottom-1/3 left-1/3 w-48 h-48 rounded-full bg-gradient-to-r from-violet-500/15 to-emerald-500/15 blur-[60px]" />
@@ -227,8 +244,8 @@ const ContactSection = () => {
             />
             
             {/* Glass Container */}
-            <div className="relative rounded-[2.5rem] bg-gradient-to-b from-white/[0.1] to-white/[0.02] backdrop-blur-3xl border border-white/[0.12] shadow-2xl overflow-hidden p-8 md:p-12">
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
+            <div className="relative rounded-[2.5rem] bg-gradient-to-b from-white/[0.02] to-transparent backdrop-blur-sm border border-white/[0.05] shadow-2xl overflow-hidden p-8 md:p-12">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
               
               <AnimatePresence mode="wait">
                 {isSubmitted ? (

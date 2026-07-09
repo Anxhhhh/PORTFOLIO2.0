@@ -40,11 +40,16 @@ const Navbar = ({ show }) => {
   return (
     <div className={`fixed top-0 left-0 w-full z-[100] flex justify-center pointer-events-none transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${show ? "opacity-100 translate-y-0 delay-[800ms]" : "opacity-0 -translate-y-8"}`}>
       <nav
-	className={`pointer-events-auto flex items-center justify-between transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden backdrop-blur-2xl border ${isScrolled
-	  ? "w-[90%] md:w-[750px] lg:w-[800px] border-white/20 py-4 px-8 rounded-full translate-y-6"
-	  : "w-full bg-transparent border-transparent py-8 px-8 md:px-12 rounded-none translate-y-0"
+		className={`pointer-events-auto flex items-center justify-between transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden backdrop-blur-2xl border ${isScrolled
+	  ? "w-[90%] md:w-[750px] lg:w-[800px] border-white/[0.12] py-4 px-8 rounded-full translate-y-6"
+	  : "w-[96%] md:w-[92%] border-white/[0.07] py-5 px-8 md:px-12 rounded-2xl translate-y-3"
 	  }`}
-	style={isScrolled ? { background: "rgba(18, 18, 24, 0.75)" } : {}}
+	style={{
+	  background: isScrolled
+	    ? "rgba(10, 10, 12, 0.82)"
+	    : "rgba(12, 12, 14, 0.72)",
+	  boxShadow: "0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)",
+	}}
       >
 	<div className="flex-1 flex justify-start gap-6 md:gap-8 text-[13px] md:text-[15px] font-normal tracking-wide relative z-10">
 	  {navLinks.slice(0, 2).map((link) => (
