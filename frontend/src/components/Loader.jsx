@@ -58,7 +58,12 @@ export default function Loader({ onComplete }) {
     gsap.set(greet, { opacity: 0, y: 14, scale: 0.97, filter: "blur(6px)" });
 
     // ── Master timeline ───────────────────────────────────────────────────
-    const tl = gsap.timeline();
+    const tl = gsap.timeline({
+      onComplete: () => {
+        document.body.style.overflow = "";
+        onComplete?.();
+      }
+    });
     tlRef.current = tl;
 
 
@@ -91,14 +96,9 @@ export default function Loader({ onComplete }) {
       }
     });
 
-    // ── Step 3: Cinematic upward wipe exit ────────────────────────────────
-    // Fire onComplete at the START of the wipe so the Hero mounts and begins
-    // its entrance animation while the black panel is still lifting away.
-    // This eliminates the blank-screen gap between loader and hero.
-    tl.call(() => {
-      document.body.style.overflow = "";
-      onComplete?.();
-    });
+    // ── Step 3: Upward glide exit ─────────────────────────────────────────
+    // The panel glides up first, THEN the timeline's onComplete fires hero.
+    // This ensures no blank flash — hero appears only after panel is gone.
 
     tl.to(greet, {
       opacity: 0,
@@ -111,8 +111,8 @@ export default function Loader({ onComplete }) {
     tl.to(
       panel,
       {
-        clipPath: "inset(0 0 100% 0)",
-        duration: 0.72,
+        y: "-100%",
+        duration: 0.85,
         ease: "power4.inOut",
       },
       "<0.04"
@@ -137,8 +137,7 @@ export default function Loader({ onComplete }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        clipPath: "inset(0 0 0% 0)",
-        willChange: "clip-path",
+        willChange: "transform",
         isolation: "isolate",
       }}
     >

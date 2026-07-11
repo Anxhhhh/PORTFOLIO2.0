@@ -29,9 +29,9 @@ export default function App() {
           <OurWorks />
           <ContactSection />
         </div>
-
-        <SmoothCursor />
       </div>
+
+      <SmoothCursor />
     </SmoothScroll>
   );
 }

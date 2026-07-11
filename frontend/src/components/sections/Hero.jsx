@@ -63,6 +63,7 @@ export default function Hero({ visible }) {
   const cornerRefs = useRef([]);  // 4 corner accent divs
   const charRefs = useRef([]);  // subtitle characters
   const noteRefs = useRef([]);  // sticky note cards
+  const heroRef = useRef(null);  // outer hero wrapper for parallax scale
 
   // ── Particles (memo so they don't regenerate) ─────────────
   const particles = useMemo(() =>
@@ -284,8 +285,21 @@ export default function Hero({ visible }) {
   useEffect(() => {
     if (!isLoaded) return;
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
+    const handleScroll = ({ scroll }) => {
+      const scrollY = scroll;
+
+      // ── Parallax on hero wrapper: scale + dim as next section approaches ──
+      if (heroRef.current) {
+        const vh = window.innerHeight;
+        const progress = Math.min(scrollY / (vh * 0.85), 1);
+        gsap.to(heroRef.current, {
+          scale: 1 - progress * 0.07,
+          opacity: 1 - progress * 0.55,
+          ease: "none",
+          duration: 0.3,
+          overwrite: "auto",
+        });
+      }
 
       // ANSHRAJ drifts up faster — stronger parallax
       if (prathamRef.current) {
@@ -338,8 +352,17 @@ export default function Hero({ visible }) {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Use Lenis scroll event for accuracy with smooth-scroll
+    const lenis = window.lenis;
+    if (lenis) {
+      lenis.on("scroll", handleScroll);
+      return () => lenis.off("scroll", handleScroll);
+    } else {
+      // Fallback to native scroll
+      const nativeHandler = () => handleScroll({ scroll: window.scrollY });
+      window.addEventListener("scroll", nativeHandler, { passive: true });
+      return () => window.removeEventListener("scroll", nativeHandler);
+    }
   }, [isLoaded]);
 
 
@@ -365,8 +388,9 @@ export default function Hero({ visible }) {
   // ────────────────────────────────────────────────────────────
   return (
     <div
+      ref={heroRef}
       id="home"
-      className="relative min-h-screen bg-black text-white overflow-hidden flex flex-col items-center justify-center [perspective:1000px]"
+      className="relative h-screen bg-black text-white overflow-hidden flex flex-col items-center justify-center [perspective:1000px]"
     >
       {/* ── Cyber Corner Accents ─────────────────────────────── */}
       <div ref={el => cornerRefs.current[0] = el} className="absolute top-8 left-8 w-12 h-12 border-t border-l border-white/20" />
